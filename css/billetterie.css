@@ -230,16 +230,19 @@
 .ticket-visual .tv-cat,
 .ticket-visual .tv-total {
   position: absolute;
-  font: 700 clamp(11px, 3vw, 17px)/1 var(--font-body);
-  color: var(--cream);
+  font: 700 clamp(10px, 2.6vw, 15px)/1 var(--font-body);
+  color: #FFEBB6;
   text-align: left;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.ticket-visual .tv-name { top: 28.7%; left: 19.3%; right: 55%; }
-.ticket-visual .tv-cat { top: 28.7%; left: 51.4%; right: 16%; }
-.ticket-visual .tv-total { top: 34.4%; left: 51.4%; right: 16%; }
+/* Positions calibrées sur les repères "NOM :", "CATEGORIE :" et "MONTANT :"
+   imprimés dans assets/ticket-template.jpg (ancrage par le bas pour que le
+   texte se pose juste au-dessus du trait, quelle que soit sa taille). */
+.ticket-visual .tv-name { bottom: 71.7%; left: 23.5%; right: 55%; }
+.ticket-visual .tv-cat { bottom: 71.7%; left: 60.5%; right: 14%; }
+.ticket-visual .tv-total { bottom: 67.4%; left: 60.5%; right: 14%; }
 .ticket-visual .tv-qr {
   position: absolute; top: 38.5%; left: 33.5%; width: 33.4%; height: 26.2%;
   display: flex; align-items: center; justify-content: center;
