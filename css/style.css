@@ -1,0 +1,218 @@
+/* =========================================================
+   Griot Sambolé 2026 — feuille de style commune
+   Tokens, réinitialisation, header, footer, boutons, reveal
+   ========================================================= */
+
+@font-face {
+  font-family: "MoshiMoshi";
+  src: url("../assets/MoshiMoshi-Regular.otf") format("opentype");
+  font-display: swap;
+}
+
+:root {
+  --cream: #FBEBC8;
+  --brown: #4A2410;
+  --brown-2: #5B3A22;
+  --red: #C0281F;
+  --orange: #F2A02D;
+  --yellow: #FFC800;
+  --black: #14161C;
+  --green: #1E8B4A;
+  --font-display: "MoshiMoshi", "Manrope", sans-serif;
+  --font-body: "Manrope", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--brown);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+a { color: var(--red); text-decoration: none; }
+a:hover { color: var(--orange); }
+
+img { max-width: 100%; }
+
+input, select, button { font-family: var(--font-body); }
+
+.container {
+  padding: clamp(24px, 4vw, 56px) clamp(16px, 4vw, 64px) clamp(48px, 6vw, 90px);
+}
+
+/* ---------- reveal-on-scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .6s cubic-bezier(.22,1,.36,1), transform .6s cubic-bezier(.22,1,.36,1);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: rgba(251,235,200,.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(74,36,16,.12);
+  font-family: var(--font-body);
+}
+.site-header__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px clamp(16px, 3vw, 48px);
+}
+.site-header__logo { display: flex; align-items: center; flex: 0 0 auto; }
+.site-header__logo img { height: 42px; width: auto; display: block; }
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 26px);
+  font: 600 14px/1 var(--font-body);
+}
+.site-header__nav a.nav-link {
+  color: var(--brown);
+  border-bottom: 2px solid transparent;
+  padding-bottom: 3px;
+}
+.site-header__nav a.nav-link.is-active {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+.site-header__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--red);
+  color: var(--cream) !important;
+  padding: 13px 22px;
+  border-radius: 999px;
+  font: 800 14px/1 var(--font-body);
+  box-shadow: 3px 4px 0 rgba(74,36,16,.9);
+}
+.site-header__cta--sm { padding: 12px 16px; font-size: 13px; gap: 8px; }
+.site-header__badge {
+  background: var(--cream);
+  color: var(--red);
+  border-radius: 999px;
+  padding: 3px 8px;
+  font: 800 12px/1 var(--font-body);
+}
+
+.site-header__mobile { display: none; align-items: center; gap: 12px; }
+.site-header__burger {
+  width: 48px; height: 48px; border-radius: 16px; border: 2px solid var(--brown);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 5px; cursor: pointer; background: transparent;
+}
+.site-header__burger span { display: block; height: 2px; background: var(--brown); border-radius: 2px; }
+.site-header__burger span:nth-child(1) { width: 22px; }
+.site-header__burger span:nth-child(2) { width: 22px; }
+.site-header__burger span:nth-child(3) { width: 14px; }
+
+.site-header__drawer {
+  display: none;
+  border-top: 2px solid rgba(74,36,16,.12);
+  background: var(--cream);
+  padding: 14px clamp(16px, 3vw, 48px) 22px;
+  flex-direction: column;
+}
+.site-header__drawer.is-open { display: flex; }
+.site-header__drawer a.drawer-link {
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(74,36,16,.15);
+  font: 700 18px/1 var(--font-body);
+  color: var(--brown);
+}
+.site-header__drawer a.drawer-link.is-active { color: var(--red); }
+.site-header__drawer .drawer-cta {
+  margin-top: 14px;
+  text-align: center;
+  background: var(--red);
+  color: var(--cream);
+  padding: 18px;
+  border-radius: 999px;
+  font: 800 16px/1 var(--font-body);
+  box-shadow: 4px 5px 0 rgba(74,36,16,.9);
+}
+.site-header__drawer .drawer-info {
+  margin-top: 16px;
+  font: 500 14px/1.6 var(--font-body);
+  color: var(--brown-2);
+}
+
+@media (max-width: 999px) {
+  .site-header__nav { display: none; }
+  .site-header__mobile { display: flex; }
+}
+
+/* ---------- footer ---------- */
+.site-footer {
+  background: var(--brown);
+  padding: clamp(36px, 5vw, 60px) clamp(16px, 4vw, 64px) clamp(28px, 3vw, 40px);
+  font-family: var(--font-body);
+}
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 32px;
+}
+.site-footer__brand img {
+  height: 120px; width: auto; display: block;
+  filter: brightness(0) invert(1) sepia(.3);
+}
+.site-footer__brand p {
+  margin-top: 16px;
+  font: 500 15px/1.7 var(--font-body);
+  color: rgba(251,235,200,.7);
+}
+.site-footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  font: 600 15px/1 var(--font-body);
+}
+.site-footer__col-title {
+  font: 700 12px/1 ui-monospace, monospace;
+  letter-spacing: .16em;
+  color: var(--orange);
+}
+.site-footer__col a, .site-footer__col span { color: rgba(251,235,200,.85); }
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(251,235,200,.2);
+  font: 500 13px/1.5 var(--font-body);
+  color: rgba(251,235,200,.55);
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  border-radius: 999px;
+  font: 800 15px/1 var(--font-body);
+  text-align: center;
+}
+.btn-red { background: var(--red); color: var(--cream); }
+.btn-orange { background: var(--orange); color: var(--brown); }
+.btn-green { background: var(--green); color: var(--cream); }
+.btn-disabled { background: rgba(251,235,200,.18); color: rgba(251,235,200,.5); cursor: not-allowed; }

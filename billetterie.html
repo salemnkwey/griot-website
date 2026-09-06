@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Billetterie — Griot Sambolé 2026</title>
+<meta name="description" content="Achetez vos billets pour le Village du Griot — Griot Sambolé 2026, les 17 et 18 octobre au Centre Culturel Congolais, Kinshasa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/billetterie.css">
+</head>
+<body data-page="billetterie">
+
+<header class="site-header">
+  <div class="site-header__bar">
+    <a href="index.html" class="site-header__logo">
+      <img src="assets/logo-h.png" alt="Griot Sambolé 2026">
+    </a>
+
+    <nav class="site-header__nav">
+      <a href="index.html" class="nav-link" data-page-link="accueil">Accueil</a>
+      <a href="apropos.html" class="nav-link" data-page-link="apropos">À propos</a>
+      <a href="programme.html" class="nav-link" data-page-link="programme">Programme</a>
+      <a href="partenaires.html" class="nav-link" data-page-link="partenaires">Partenaires</a>
+      <a href="billetterie.html" class="site-header__cta">BILLETTERIE <span class="site-header__badge" data-cart-badge>0</span></a>
+    </nav>
+
+    <div class="site-header__mobile">
+      <a href="billetterie.html" class="site-header__cta site-header__cta--sm">Billets <span class="site-header__badge" data-cart-badge>0</span></a>
+      <button type="button" class="site-header__burger" aria-label="Menu" data-burger>
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="site-header__drawer" data-drawer>
+    <a href="index.html" class="drawer-link" data-page-link="accueil">Accueil</a>
+    <a href="apropos.html" class="drawer-link" data-page-link="apropos">À propos</a>
+    <a href="programme.html" class="drawer-link" data-page-link="programme">Programme</a>
+    <a href="partenaires.html" class="drawer-link" data-page-link="partenaires">Partenaires</a>
+    <a href="billetterie.html" class="drawer-cta">Prendre mon billet →</a>
+    <div class="drawer-info">Centre Culturel Congolais — Le Zoo, Kinshasa — 17 &amp; 18 octobre 2026</div>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="steps">
+    <span class="steps__pill" data-step-pill="1">1 · Billets</span><span class="steps__sep">—</span>
+    <span class="steps__pill" data-step-pill="2">2 · Informations</span><span class="steps__sep">—</span>
+    <span class="steps__pill" data-step-pill="3">3 · Paiement</span><span class="steps__sep">—</span>
+    <span class="steps__pill" data-step-pill="4">4 · Confirmation</span>
+  </div>
+
+  <!-- ÉTAPE 1 — BILLETS -->
+  <section class="wizard-step" data-wizard-step="1">
+    <div class="tickets-head">
+      <h1 class="reveal">Entrer dans le Village du Griot</h1>
+      <div class="day-toggle">
+        <button type="button" class="day-toggle__opt" data-day="1">Jour 1 — 17 oct.</button>
+        <button type="button" class="day-toggle__opt" data-day="2">Jour 2 — 18 oct.</button>
+      </div>
+    </div>
+
+    <div class="tickets-layout">
+      <div class="tickets-col">
+        <div data-ticket-list></div>
+
+        <div class="group-banner">
+          <div>
+            <div class="group-banner__label">ACHAT EN GROS / GROUPE</div>
+            <div class="group-banner__title">Entreprises, écoles, associations, familles nombreuses</div>
+          </div>
+          <a href="groupes.html" class="group-banner__cta">Acheter plusieurs billets</a>
+        </div>
+      </div>
+
+      <aside class="cart-panel">
+        <div class="cart-panel__label">MON PANIER</div>
+        <div class="cart-panel__title" data-cart-title>Jour 1 — 17 oct.</div>
+        <div data-cart-lines></div>
+        <div class="cart-empty" data-cart-empty>Aucun billet sélectionné pour l'instant.</div>
+        <div class="cart-total-row"><span>SOUS-TOTAL</span><span data-subtotal>0 $</span></div>
+        <div class="cart-fees-row"><span>FRAIS DE SERVICE</span><span data-fees>0 $</span></div>
+        <div class="cart-grand-row"><span class="cart-grand-row__label">Total</span><span class="cart-grand-row__value" data-total>0 $</span></div>
+        <button type="button" class="cart-continue btn-disabled" data-continue>Continuer</button>
+        <div class="cart-note">Mobile money, carte ou virement</div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ÉTAPE 2 — INFORMATIONS -->
+  <section class="wizard-step" data-wizard-step="2">
+    <h1 class="step-title">Tes informations</h1>
+    <div class="info-layout">
+      <form class="info-form" onsubmit="return false;">
+        <label>
+          <span>NOM COMPLET</span>
+          <input type="text" placeholder="Ton nom" data-buyer-name autocomplete="name">
+        </label>
+        <label>
+          <span>TÉLÉPHONE</span>
+          <input type="tel" placeholder="+243 …" data-buyer-phone autocomplete="tel">
+        </label>
+        <label>
+          <span>E-MAIL</span>
+          <input type="email" placeholder="nom@exemple.cd" data-buyer-mail autocomplete="email">
+        </label>
+        <label>
+          <span>MOYEN DE PAIEMENT</span>
+          <select data-pay-method>
+            <option>Mobile money</option>
+            <option>Carte bancaire</option>
+            <option>Virement</option>
+          </select>
+        </label>
+      </form>
+
+      <aside class="recap-panel">
+        <div class="recap-panel__label">RÉCAPITULATIF</div>
+        <div data-recap-lines></div>
+        <div class="recap-total-row"><span class="recap-total-row__label">Total</span><span class="recap-total-row__value" data-total>0 $</span></div>
+        <button type="button" class="recap-cta" data-goto="3">Aller au paiement</button>
+        <button type="button" class="recap-back" data-goto="1">← Revenir au panier</button>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ÉTAPE 3 — PAIEMENT -->
+  <section class="wizard-step" data-wizard-step="3">
+    <div class="pay-wrap">
+      <h1 class="step-title">Paiement</h1>
+      <div class="pay-card">
+        <div class="pay-row">
+          <span class="pay-row__label">MONTANT À PAYER</span>
+          <span class="pay-row__value" data-total>0 $</span>
+        </div>
+        <div class="pay-line" data-pay-line></div>
+        <div class="pay-sub" data-mail-line></div>
+        <button type="button" class="pay-confirm" data-goto="4">Confirmer le paiement</button>
+        <button type="button" class="pay-back" data-goto="2">← Modifier mes informations</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÉTAPE 4 — CONFIRMATION -->
+  <section class="wizard-step" data-wizard-step="4">
+    <div class="done-wrap">
+      <div class="done-badge">PAIEMENT CONFIRMÉ</div>
+      <h1>Bienvenue au village</h1>
+      <p>Ton billet est prêt. Il t'attend aussi dans ta boîte mail et par SMS.</p>
+
+      <div class="ticket-visual">
+        <img src="assets/ticket-template.jpg" alt="Billet Griot Sambolé 2026">
+        <div class="tv-name" data-ticket-name></div>
+        <div class="tv-cat" data-ticket-category></div>
+        <div class="tv-total" data-total>0 $</div>
+        <div class="tv-qr"><span></span></div>
+      </div>
+      <div class="ticket-ref">N° <span data-ticket-ref></span> — QR unique à scanner à l'entrée</div>
+
+      <div class="done-actions">
+        <button type="button" data-download-ticket>Télécharger le billet</button>
+        <a href="index.html">Retour à l'accueil</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer__grid">
+    <div class="site-footer__brand">
+      <img src="assets/logo-v.png" alt="Griot Sambolé 2026">
+      <p>Centre Culturel Congolais — Le Zoo, Kinshasa<br>17 &amp; 18 octobre 2026</p>
+    </div>
+    <div class="site-footer__col">
+      <div class="site-footer__col-title">NAVIGUER</div>
+      <a href="apropos.html">À propos</a>
+      <a href="index.html#experience">Expérience</a>
+      <a href="programme.html">Programme</a>
+      <a href="index.html#histoires">Histoires</a>
+    </div>
+    <div class="site-footer__col">
+      <div class="site-footer__col-title">BILLETTERIE</div>
+      <a href="billetterie.html">Billets individuels</a>
+      <a href="billetterie.html">Pack famille &amp; VIP</a>
+      <a href="groupes.html">Groupes &amp; entreprises</a>
+      <a href="partenaires.html">Devenir partenaire</a>
+    </div>
+    <div class="site-footer__col">
+      <div class="site-footer__col-title">SUIVRE</div>
+      <span>Instagram</span><span>Facebook</span><span>TikTok</span><span>contact@griotsambole.cd</span>
+    </div>
+  </div>
+  <div class="site-footer__bottom">
+    <span>© 2026 Griot Sambolé — Kinshasa</span><span>Mentions légales · Politique de confidentialité</span>
+  </div>
+</footer>
+
+<script src="js/cart.js"></script>
+<script src="js/site.js"></script>
+<script src="js/billetterie.js"></script>
+</body>
+</html>
