@@ -40,8 +40,44 @@ document.addEventListener("DOMContentLoaded", function () {
     mailLine: document.querySelector("[data-mail-line]"),
     ticketName: document.querySelector("[data-ticket-name]"),
     ticketCategory: document.querySelector("[data-ticket-category]"),
-    ticketRef: document.querySelector("[data-ticket-ref]")
+    ticketRef: document.querySelector("[data-ticket-ref]"),
+    ticketQr: document.querySelector("[data-ticket-qr]"),
+    ticketVisual: document.querySelector("[data-ticket-visual]"),
+    downloadBtn: document.querySelector("[data-download-ticket]")
   };
+
+  let qrCanvas = null;
+
+  function updateQr(text) {
+    if (!el.ticketQr || !window.qrcode) return;
+    const qr = window.qrcode(0, "M");
+    qr.addData(text);
+    qr.make();
+
+    const count = qr.getModuleCount();
+    const size = 320;
+    const cell = size / count;
+
+    if (!qrCanvas) {
+      qrCanvas = document.createElement("canvas");
+      qrCanvas.width = size;
+      qrCanvas.height = size;
+      el.ticketQr.innerHTML = "";
+      el.ticketQr.appendChild(qrCanvas);
+    }
+
+    const ctx = qrCanvas.getContext("2d");
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = "#14161C";
+    for (let r = 0; r < count; r++) {
+      for (let c = 0; c < count; c++) {
+        if (qr.isDark(r, c)) {
+          ctx.fillRect(Math.round(c * cell), Math.round(r * cell), Math.ceil(cell), Math.ceil(cell));
+        }
+      }
+    }
+  }
 
   function persist() {
     window.GriotCart.setCart(state.qty, state.day);
@@ -146,10 +182,26 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function renderStep4(items, cartLines, total, count) {
-    el.ticketName.textContent = state.buyerName || "Invité·e";
+    const name = state.buyerName || "Invité·e";
     const firstLabel = cartLines[0] ? cartLines[0].label.replace(/^\d+\s*×\s*/, "") : "Standard";
-    el.ticketCategory.textContent = firstLabel + (cartLines.length > 1 ? " +" + (cartLines.length - 1) : "");
-    el.ticketRef.textContent = "GS26-" + (state.day === 1 ? "J1" : "J2") + "-00" + (4000 + count * 7);
+    const category = firstLabel + (cartLines.length > 1 ? " +" + (cartLines.length - 1) : "");
+    const ref = "GS26-" + (state.day === 1 ? "J1" : "J2") + "-00" + (4000 + count * 7);
+    const dayLabel = state.day === 1 ? "17 octobre 2026" : "18 octobre 2026";
+
+    el.ticketName.textContent = name;
+    el.ticketCategory.textContent = category;
+    el.ticketRef.textContent = ref;
+
+    const qrText = [
+      "GRIOT SAMBOLÉ 2026",
+      "Billet : " + ref,
+      "Nom : " + name,
+      "Catégorie : " + category,
+      "Montant : " + total + " $",
+      "Jour : " + dayLabel,
+      "Centre Culturel Congolais — Le Zoo, Kinshasa"
+    ].join("\n");
+    updateQr(qrText);
   }
 
   function render() {
@@ -183,8 +235,40 @@ document.addEventListener("DOMContentLoaded", function () {
   el.buyerMail.addEventListener("input", function (e) { state.buyerMail = e.target.value; });
   el.payMethod.addEventListener("change", function (e) { state.payMethod = e.target.value; render(); });
 
-  document.querySelector("[data-download-ticket]").addEventListener("click", function () {
-    window.print();
+  el.downloadBtn.addEventListener("click", function () {
+    if (!window.html2canvas || !window.jspdf || !el.ticketVisual) { window.print(); return; }
+
+    const originalLabel = el.downloadBtn.textContent;
+    el.downloadBtn.disabled = true;
+    el.downloadBtn.textContent = "Génération du PDF…";
+
+    const scale = 2;
+    window.html2canvas(el.ticketVisual, { scale: scale, useCORS: true, backgroundColor: "#ffffff" })
+      .then(function (canvas) {
+        const imgData = canvas.toDataURL("image/jpeg", 0.95);
+        const footerH = Math.round(60 * scale);
+        const pageW = canvas.width;
+        const pageH = canvas.height + footerH;
+        const jsPDF = window.jspdf.jsPDF;
+        const doc = new jsPDF({ orientation: pageH >= pageW ? "portrait" : "landscape", unit: "px", format: [pageW, pageH] });
+
+        doc.addImage(imgData, "JPEG", 0, 0, pageW, canvas.height);
+        doc.setFillColor(74, 36, 16);
+        doc.rect(0, canvas.height, pageW, footerH, "F");
+        doc.setTextColor(251, 235, 200);
+        doc.setFontSize(15);
+        doc.text("N° " + el.ticketRef.textContent + " — QR unique à scanner à l'entrée", pageW / 2, canvas.height + footerH / 2 + 5, { align: "center" });
+
+        doc.save("billet-griot-sambole-" + el.ticketRef.textContent + ".pdf");
+      })
+      .catch(function (err) {
+        console.error("Échec de la génération du PDF :", err);
+        window.print();
+      })
+      .finally(function () {
+        el.downloadBtn.disabled = false;
+        el.downloadBtn.textContent = originalLabel;
+      });
   });
 
   render();

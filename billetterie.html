@@ -152,12 +152,12 @@
       <h1>Bienvenue au village</h1>
       <p>Ton billet est prêt. Il t'attend aussi dans ta boîte mail et par SMS.</p>
 
-      <div class="ticket-visual">
-        <img src="assets/ticket-template.jpg" alt="Billet Griot Sambolé 2026">
+      <div class="ticket-visual" data-ticket-visual>
+        <img src="assets/ticket-template.jpg" alt="Billet Griot Sambolé 2026" crossorigin="anonymous">
         <div class="tv-name" data-ticket-name></div>
         <div class="tv-cat" data-ticket-category></div>
         <div class="tv-total" data-total>0 $</div>
-        <div class="tv-qr"><span></span></div>
+        <div class="tv-qr" data-ticket-qr></div>
       </div>
       <div class="ticket-ref">N° <span data-ticket-ref></span> — QR unique à scanner à l'entrée</div>
 
@@ -202,6 +202,9 @@
 
 <script src="js/cart.js"></script>
 <script src="js/site.js"></script>
+<script src="js/vendor/qrcode-generator.min.js"></script>
+<script src="js/vendor/html2canvas.min.js"></script>
+<script src="js/vendor/jspdf.umd.min.js"></script>
 <script src="js/billetterie.js"></script>
 </body>
 </html>

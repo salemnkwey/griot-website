@@ -247,12 +247,10 @@
   position: absolute; top: 38.5%; left: 33.5%; width: 33.4%; height: 26.2%;
   display: flex; align-items: center; justify-content: center;
 }
-.ticket-visual .tv-qr span {
-  width: 82%; height: 82%; border-radius: 4px;
-  background:
-    repeating-linear-gradient(90deg, var(--black) 0 5px, var(--cream) 5px 10px),
-    repeating-linear-gradient(0deg, var(--black) 0 5px, var(--cream) 5px 10px);
-  background-blend-mode: multiply;
+.ticket-visual .tv-qr canvas,
+.ticket-visual .tv-qr img {
+  width: 82%; height: 82%; border-radius: 4px; background: #fff; padding: 4%;
+  box-sizing: border-box; image-rendering: pixelated;
 }
 .ticket-ref { margin-top: 10px; font: 700 12px/1 ui-monospace, monospace; letter-spacing: .14em; color: var(--brown-2); }
 .done-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 22px; }
