@@ -23,11 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
       { time: "20h00", title: "Contes africains", place: "Grande scène" },
       { time: "20h45", title: "Scénettes & narration", place: "Grande scène" },
       { time: "21h30", title: "PR3M — performance", place: "Grande scène" },
-      { time: "22h15", title: "Drone Show — logo Griot Sambolé & GENOCOST", place: "Ciel du village" }
+      { time: "22h15", title: "Drone Show — logo Griot Sambolé", place: "Ciel du village" }
     ],
     "2-soir": [
       { time: "18h30", title: "Ouverture musicale", place: "Grande scène" },
-      { time: "19h00", title: "GENOCOST — temps de mémoire", place: "Grande scène" },
+      { time: "19h00", title: "Chants et percussions collectives", place: "Grande scène" },
       { time: "20h00", title: "Contes & récits fondateurs", place: "Grande scène" },
       { time: "21h00", title: "Performances & scénettes", place: "Grande scène" },
       { time: "22h00", title: "Clôture — chant collectif", place: "Place centrale" }

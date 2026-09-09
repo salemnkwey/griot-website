@@ -90,20 +90,6 @@
 .qty-btn--inc { background: var(--red); color: var(--cream); border: none; }
 .qty-val { min-width: 32px; text-align: center; font: 800 24px/1 var(--font-body); }
 
-.group-banner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  background: var(--black);
-  border-radius: 28px;
-  padding: 24px;
-}
-.group-banner__label { font: 700 12px/1 ui-monospace, monospace; letter-spacing: .16em; color: var(--orange); }
-.group-banner__title { margin-top: 8px; font: 800 20px/1.25 var(--font-body); color: var(--cream); max-width: 420px; }
-.group-banner__cta { background: var(--orange); color: var(--brown); padding: 16px 24px; border-radius: 999px; font: 800 15px/1 var(--font-body); }
-
 .cart-panel {
   background: var(--brown);
   border-radius: 28px;
